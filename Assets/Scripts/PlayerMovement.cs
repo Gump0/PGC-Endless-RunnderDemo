@@ -6,8 +6,8 @@ public class PlayerMovement : MonoBehaviour
 {
     public float playerMoveSpeed = 4;
     public float playerRotate;
-    private int upCount;
-    private int downCount;
+    public int upCount;
+    public int downCount;
     public int movementInputCountLimit = 3;
 
     void Update()

@@ -313,6 +313,7 @@ GameObject:
   - component: {fileID: 1128188213}
   - component: {fileID: 1128188215}
   - component: {fileID: 1128188214}
+  - component: {fileID: 1128188216}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -334,6 +335,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerMoveSpeed: 3
   playerRotate: 15
+  upCount: 0
+  downCount: 0
   movementInputCountLimit: 3
 --- !u!212 &1128188211
 SpriteRenderer:
@@ -483,6 +486,23 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &1128188216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1128188209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cb06ae2b3f7bf01fa9595ad11b4b8fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerMoveSpeed: 4
+  playerRotate: 0
+  upCount: 0
+  downCount: 0
+  movementInputCountLimit: 3
 --- !u!1001 &1329497494
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -539,6 +559,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8943104678189417936, guid: 2c38b2242b830432ca3b66bc3dfc3802, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -594,6 +618,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4761479159321081915, guid: 2c38b2242b830432ca3b66bc3dfc3802, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8943104678189417936, guid: 2c38b2242b830432ca3b66bc3dfc3802, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8943104678189417936, guid: 2c38b2242b830432ca3b66bc3dfc3802, type: 3}
+      propertyPath: m_UsedByEffector
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
