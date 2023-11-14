@@ -1,18 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ScoreCount : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    protected float playerScoreCount;
+    public Text scoreText;
 
-    // Update is called once per frame
     void Update()
     {
-        
+        ScoreIncrease();
+        UpdateScoreText();
+    }
+
+    private void ScoreIncrease()
+    {
+        playerScoreCount += Time.deltaTime;
+    }
+    
+    private void UpdateScoreText()
+    {
+        int scoreInt = Mathf.FloorToInt(playerScoreCount);
+        scoreText.text = "SCORE " + scoreInt;
     }
 }
