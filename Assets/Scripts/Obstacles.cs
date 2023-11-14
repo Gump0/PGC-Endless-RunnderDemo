@@ -7,8 +7,6 @@ public class Obstacles : MonoBehaviour
 {
     private ObstacleSpawner obstaclespawner; // Instance of ObstacleSpawner
 
-    public int obstacleSpeed;
-
     // Set the ObstacleSpawner instance
     public void SetObstacleSpawner(ObstacleSpawner spawner)
     {
@@ -22,7 +20,7 @@ public class Obstacles : MonoBehaviour
 
     private void MoveObstacle()
     {
-        transform.Translate(Vector2.left * obstacleSpeed * Time.deltaTime, Space.World);
+        transform.Translate(Vector2.left * obstaclespawner.obstacleSpeed * Time.deltaTime, Space.World);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -36,5 +34,5 @@ public class Obstacles : MonoBehaviour
         {
             SceneManager.LoadScene("SampleScene", LoadSceneMode.Single);
         }
-    }
+    } 
 }

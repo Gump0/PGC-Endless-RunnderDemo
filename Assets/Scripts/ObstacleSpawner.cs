@@ -7,9 +7,19 @@ public class ObstacleSpawner : MonoBehaviour
     public GameObject[] ObstacleObjects;
     public int rand;
 
+    //Speed Increase Stuff//
+    public int obstacleSpeed = 4;
+    public float speedIncreaseInterval = 10;
+    private float speedIncreaseTimer;
+
     void Start()
     {
         Invoke("RespawnObstacle", 0.1f);
+    }
+
+    void Update()
+    {
+        UpdateObstacleSpeed();
     }
 
     public void RespawnObstacle()
@@ -22,6 +32,16 @@ public class ObstacleSpawner : MonoBehaviour
         if (obstaclesScript != null)
         {
             obstaclesScript.SetObstacleSpawner(this);
+        }
+    }
+    private void UpdateObstacleSpeed()
+    {
+        speedIncreaseTimer += Time.deltaTime;
+        if(speedIncreaseTimer >= speedIncreaseInterval)
+        {
+            obstacleSpeed++;
+            speedIncreaseTimer = 0.0f;
+            Debug.Log("Obstacle Velocity: " + obstacleSpeed);
         }
     }
 }
