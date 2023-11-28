@@ -12,6 +12,16 @@ public class ObstacleSpawner : MonoBehaviour
     public float speedIncreaseInterval = 10;
     private float speedIncreaseTimer;
 
+    //Spawn Algorithm Stuff//
+    private Vector3 obstacleSpawnLocation;
+    private float obstacleSpawnLocationx;
+    private float obstacleSpawnLocationMaxx = 9;
+    private float obstacleSpawnLocationy;
+    private float obstacleSpawnLocationMaxy = 9;
+
+    private float maxObjectCount;
+
+
     void Start()
     {
         Invoke("RespawnObstacle", 0.1f);
@@ -20,13 +30,14 @@ public class ObstacleSpawner : MonoBehaviour
     void Update()
     {
         UpdateObstacleSpeed();
+        FindRandomPoint();
     }
 
     public void RespawnObstacle()
     {
         rand = Random.Range(0, ObstacleObjects.Length);
-        GameObject newObstacle = Instantiate(ObstacleObjects[rand], transform.position, ObstacleObjects[rand].transform.rotation);
-        
+        GameObject newObstacle = Instantiate(ObstacleObjects[rand], obstacleSpawnLocation, ObstacleObjects[rand].transform.rotation);
+
         // Set the Obstacles script's obstaclespawner
         Obstacles obstaclesScript = newObstacle.GetComponent<Obstacles>();
         if (obstaclesScript != null)
@@ -34,6 +45,7 @@ public class ObstacleSpawner : MonoBehaviour
             obstaclesScript.SetObstacleSpawner(this);
         }
     }
+
     private void UpdateObstacleSpeed()
     {
         speedIncreaseTimer += Time.deltaTime;
@@ -43,5 +55,15 @@ public class ObstacleSpawner : MonoBehaviour
             speedIncreaseTimer = 0.0f;
             Debug.Log("Obstacle Velocity: " + obstacleSpeed);
         }
+    }
+
+    private void FindRandomPoint()
+    {
+        obstacleSpawnLocation = transform.position;
+
+        obstacleSpawnLocationx = Random.Range(0, obstacleSpawnLocationMaxx);
+        obstacleSpawnLocationy = Random.Range(0, obstacleSpawnLocationMaxy);
+
+        obstacleSpawnLocation = new Vector3(obstacleSpawnLocationx, obstacleSpawnLocationy, 0f);
     }
 }
