@@ -17,11 +17,8 @@ public class ObstacleSpawner : MonoBehaviour
     private float obstacleSpawnLocationx;
     private float obstacleSpawnLocationMaxx = 9;
     private float obstacleSpawnLocationy;
-    private float obstacleSpawnLocationMaxy = 9;
-
-    private float maxObjectCount;
-
-
+    private float obstacleSpawnLocationMaxy = 5;
+    
     void Start()
     {
         Invoke("RespawnObstacle", 0.1f);
@@ -62,8 +59,8 @@ public class ObstacleSpawner : MonoBehaviour
         obstacleSpawnLocation = transform.position;
 
         obstacleSpawnLocationx = Random.Range(0, obstacleSpawnLocationMaxx);
-        obstacleSpawnLocationy = Random.Range(0, obstacleSpawnLocationMaxy);
+        obstacleSpawnLocationy = Random.Range(-7, obstacleSpawnLocationMaxy);
 
-        obstacleSpawnLocation = new Vector3(obstacleSpawnLocationx, obstacleSpawnLocationy, 0f);
+        obstacleSpawnLocation = new Vector3(obstacleSpawnLocationx, obstacleSpawnLocationy, 0f) + transform.position;
     }
 }

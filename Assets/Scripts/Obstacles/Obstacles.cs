@@ -7,6 +7,10 @@ public class Obstacles : MonoBehaviour
 {
     private ObstacleSpawner obstaclespawner; // Instance of ObstacleSpawner
 
+    private float maxObjectCount = 1; // Maximum # of objects spawned in level
+    private float destroyedObjectCount = 3; // Total Destroyed Objects throughout gamplay (by default its set to 3 to make the first object to spawn faster)
+    private float maxObjectIncreaseInterval = 4; // Detirmines the how many destroyed objects it takes to increase the max object count
+
     // Set the ObstacleSpawner instance
     public void SetObstacleSpawner(ObstacleSpawner spawner)
     {
@@ -25,10 +29,19 @@ public class Obstacles : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.CompareTag("GOBACKTOYOURCOUNTRY"))
+        if(other.CompareTag("GOBACKTOYOURCOUNTRY") && destroyedObjectCount < 4)
         {
-            obstaclespawner.RespawnObstacle();
-            Destroy(gameObject);
+            for(int i = 0; i < maxObjectCount; i++)
+            {
+                obstaclespawner.RespawnObstacle();
+                Destroy(gameObject);
+                destroyedObjectCount ++;
+                
+                if (destroyedObjectCount >= maxObjectIncreaseInterval)
+                {
+                    maxObjectCount++;
+                }
+            }
         }
         if(other.CompareTag("Player"))
         {
