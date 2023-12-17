@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 public class Obstacles : MonoBehaviour
 {
     private ObstacleSpawner obstaclespawner; // Instance of ObstacleSpawner
+
+    //public ObstacleStat obstacleStats; //Save this for scriptable object implementation
     
     // Set the ObstacleSpawner instance
     public void SetObstacleSpawner(ObstacleSpawner spawner)
@@ -27,7 +29,7 @@ public class Obstacles : MonoBehaviour
     {
         if(other.CompareTag("GOBACKTOYOURCOUNTRY"))
         {
-            obstaclespawner.RespawnObstacle();
+            obstaclespawner.RespawnManager();
             Destroy(gameObject);
         }
         if(other.CompareTag("Player"))
