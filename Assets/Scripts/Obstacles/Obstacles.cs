@@ -7,15 +7,7 @@ public class Obstacles : MonoBehaviour
 {
     private ObstacleSpawner obstaclespawner; // Instance of ObstacleSpawner
 
-    //public ObstacleStat obstacleStats; //Save this for scriptable object implementation
-    
-    void Start()
-    {
-        if (obstaclespawner != null)
-        {
-            int destroyedObjCount = obstaclespawner.destroyedObjectCount;
-        }
-    }
+    public bool isFirstObj;
 
     // Set the ObstacleSpawner instance
     public void SetObstacleSpawner(ObstacleSpawner spawner)
@@ -37,7 +29,11 @@ public class Obstacles : MonoBehaviour
     {
         if(other.CompareTag("GOBACKTOYOURCOUNTRY"))
         {
-            obstaclespawner.RespawnManager();
+            if(isFirstObj)
+            {
+                obstaclespawner.destroyedObjCount++;
+            }
+            obstaclespawner.RespawnObstacle();
             Destroy(gameObject);
         }
         if(other.CompareTag("Player"))

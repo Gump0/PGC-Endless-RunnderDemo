@@ -991,6 +991,11 @@ MonoBehaviour:
   rand: 0
   obstacleSpeed: 4
   speedIncreaseInterval: 10
+  randomSpawnRadiusModifier: 5
+  maxObjectCount: 1
+  destroyedObjectCount: 3
+  maxObjectIncreaseInterval: 4
+  maxGlobalObjectCount: 12
 --- !u!1 &1806558149
 GameObject:
   m_ObjectHideFlags: 0

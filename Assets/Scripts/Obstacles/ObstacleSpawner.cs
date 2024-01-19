@@ -16,13 +16,8 @@ public class ObstacleSpawner : MonoBehaviour
     private Vector3 obstacleSpawnLocation;
     public int randomSpawnRadiusModifier;
 
-    // More spawning algorithm stuff
-    //TEMP SERIALIZEFEILD FOR TESTING
-    [SerializeField] private int maxObjectCount = 1; // Maximum # of objects spawned in level
-    public int destroyedObjectCount = 3; // Total Destroyed Objects throughout gamplay (by default its set to 3 to make the first object to spawn faster)
-    //TEMP SERIALIZEFEILD FOR TESTING
-    [SerializeField] private int maxObjectIncreaseInterval = 4; // Detirmines the how many destroyed objects it takes to increase the max object count
-    public int maxGlobalObjectCount = 12; // Used as a hard cap for how many object instances can exist at a time.
+    public int maxObjectCount = 1;
+    public int destroyedObjCount = 3;
 
     private bool hasCompletedFirstSpawn = false;
     
@@ -30,7 +25,7 @@ public class ObstacleSpawner : MonoBehaviour
     {
         if(!hasCompletedFirstSpawn)
         {
-            Invoke("RespawnManager", 0.1f);
+            Invoke("RespawnObstacle", 0.1f);
         }
     }
 
@@ -41,45 +36,27 @@ public class ObstacleSpawner : MonoBehaviour
 
     public void RespawnManager()
     {
-        switch(destroyedObjectCount)
+        if(destroyedObjCount >= 4)
         {
-            //// IN THE CASE THAT DESTROYED OBJ COUNT DOESN'T MOG ANY OTHER VALUE :P ////
-            case int destroyedObjectCount when destroyedObjectCount < maxObjectIncreaseInterval:
-            Debug.Log("Spawn Object Without Increasing Count");
-            hasCompletedFirstSpawn = true;
-            
-            for(int i = 0; i < maxObjectCount; i++)
-            {
-                RespawnObstacle(); // Execute "RespawnObstacle()" dependant of the "maxObjectCount" value
-            }
-            break;
-            
-            //// IN THE CASE THAT DESTROYED OBJECT COUNT EXCEEDS INCRASE INTERVAL, BUMP THE MAX OBJ COUNT!! ////
-            case int destroyedObjectCount when destroyedObjectCount >= maxObjectIncreaseInterval:
-            Debug.Log("Spawn Object As Well As Increase Max Obstacle Count");
-            destroyedObjectCount = 0; // Reset total count
-            maxObjectCount++; // Increase max obstacle count
-
-            for(int i = 0; i < maxObjectCount; i++)
-            {
-                RespawnObstacle(); // Execute "RespawnObstacle()" dependant of the "maxObjectCount" value
-            }
-            break;
-
-            //// IN THE CASE THAT DESTROYED OBJ COUNT AND MAX OBJ COUNT EXCEEDS GLOBAL LIMIT ////
-            case int destroyedObjectCount when destroyedObjectCount >= maxObjectIncreaseInterval && maxObjectCount >= maxGlobalObjectCount:
-            Debug.Log("Spawn Obstacles Without Exceeding Global Spawn Limit");
-
-            for(int i = 0; i < maxGlobalObjectCount; i++)
-            {
-                RespawnObstacle(); // Execute "RespawnObstacle()" dependant of the "maxGlobalObjectCount" value
-            }
-            break;
+            maxObjectCount++;
         }
     }
 
-    private void RespawnObstacle()
+    //The first obstacle is in charge of keeping count of 'destroyedObjCount'
+    // public void SpawnFirstObstacle()
+    // {
+    //     FindRandomPoint();
+    //     rand = Random.Range(0, ObstacleObjects.Length);
+    //     GameObject firstObject = Instantiate(ObstacleObjects[rand], obstacleSpawnLocation, ObstacleObjects[rand].transform.rotation);
+
+    //     Obstacles obstacles = firstObject.GetComponent<Obstacles>();
+    //     obstacles.isFirstObj = true;
+    // }
+
+    public void RespawnObstacle()
     {
+        RespawnManager();
+
         FindRandomPoint();
 
         for(int i = 0; i < maxObjectCount; i++)
