@@ -14,16 +14,12 @@ public class ObstacleSpawner : MonoBehaviour
 
     //Spawn Algorithm Stuff//
     private Vector3 obstacleSpawnLocation;
-    private float obstacleSpawnLocationx;
-    private float obstacleSpawnLocationMaxx = 9;
-    private float obstacleSpawnLocationy;
-    private float obstacleSpawnLocationMaxy = 5;
+    public int randomSpawnRadiusModifier;
 
     // More spawning algorithm stuff
     //TEMP SERIALIZEFEILD FOR TESTING
     [SerializeField] private int maxObjectCount = 1; // Maximum # of objects spawned in level
-    //TEMP SERIALIZEFEILD FOR TESTING
-    [SerializeField] private int destroyedObjectCount = 3; // Total Destroyed Objects throughout gamplay (by default its set to 3 to make the first object to spawn faster)
+    public int destroyedObjectCount = 3; // Total Destroyed Objects throughout gamplay (by default its set to 3 to make the first object to spawn faster)
     //TEMP SERIALIZEFEILD FOR TESTING
     [SerializeField] private int maxObjectIncreaseInterval = 4; // Detirmines the how many destroyed objects it takes to increase the max object count
     public int maxGlobalObjectCount = 12; // Used as a hard cap for how many object instances can exist at a time.
@@ -51,7 +47,6 @@ public class ObstacleSpawner : MonoBehaviour
             case int destroyedObjectCount when destroyedObjectCount < maxObjectIncreaseInterval:
             Debug.Log("Spawn Object Without Increasing Count");
             hasCompletedFirstSpawn = true;
-            destroyedObjectCount++;
             
             for(int i = 0; i < maxObjectCount; i++)
             {
@@ -86,7 +81,6 @@ public class ObstacleSpawner : MonoBehaviour
     private void RespawnObstacle()
     {
         FindRandomPoint();
-        destroyedObjectCount++;
 
         for(int i = 0; i < maxObjectCount; i++)
         {
@@ -116,11 +110,7 @@ public class ObstacleSpawner : MonoBehaviour
 
     private void FindRandomPoint()
     {
-        obstacleSpawnLocation = transform.position;
-
-        obstacleSpawnLocationx = Random.Range(0, obstacleSpawnLocationMaxx);
-        obstacleSpawnLocationy = Random.Range(-6, obstacleSpawnLocationMaxy);
-
-        obstacleSpawnLocation = new Vector3(obstacleSpawnLocationx, obstacleSpawnLocationy, 0f) + transform.position;
+        Vector2 randomSpawnOffset = Random.insideUnitCircle * randomSpawnRadiusModifier;
+        obstacleSpawnLocation = new Vector3(randomSpawnOffset.x + transform.position.x, randomSpawnOffset.y + transform.position.y, transform.position.z);
     }
 }

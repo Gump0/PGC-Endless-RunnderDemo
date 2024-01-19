@@ -9,6 +9,14 @@ public class Obstacles : MonoBehaviour
 
     //public ObstacleStat obstacleStats; //Save this for scriptable object implementation
     
+    void Start()
+    {
+        if (obstaclespawner != null)
+        {
+            int destroyedObjCount = obstaclespawner.destroyedObjectCount;
+        }
+    }
+
     // Set the ObstacleSpawner instance
     public void SetObstacleSpawner(ObstacleSpawner spawner)
     {
