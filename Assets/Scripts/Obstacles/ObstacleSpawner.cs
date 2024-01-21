@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ObstacleSpawner : MonoBehaviour
 {
-    public GameObject[] ObstacleObjects;
+    public GameObject[] ListOfObstacleObjects;
     public int rand;
 
     //Speed Increase Stuff//
@@ -17,16 +17,11 @@ public class ObstacleSpawner : MonoBehaviour
     public int randomSpawnRadiusModifier;
 
     public int maxObjectCount = 1;
-    public int destroyedObjCount = 3;
-
-    private bool hasCompletedFirstSpawn = false;
+    public int destroyedObjCount;
     
     void Start()
     {
-        if(!hasCompletedFirstSpawn)
-        {
-            Invoke("RespawnObstacle", 0.1f);
-        }
+        Invoke("RespawnObstacle", 0.1f);
     }
 
     void Update()
@@ -39,6 +34,8 @@ public class ObstacleSpawner : MonoBehaviour
         if(destroyedObjCount >= 4)
         {
             maxObjectCount++;
+            
+            //ListOfObstacleObjects.Length = maxObjectCount;
         }
     }
 
@@ -46,8 +43,8 @@ public class ObstacleSpawner : MonoBehaviour
     // public void SpawnFirstObstacle()
     // {
     //     FindRandomPoint();
-    //     rand = Random.Range(0, ObstacleObjects.Length);
-    //     GameObject firstObject = Instantiate(ObstacleObjects[rand], obstacleSpawnLocation, ObstacleObjects[rand].transform.rotation);
+    //     rand = Random.Range(0, ListOfObstacleObjects.Length);
+    //     GameObject firstObject = Instantiate(ListOfObstacleObjects[rand], obstacleSpawnLocation, ListOfObstacleObjects[rand].transform.rotation);
 
     //     Obstacles obstacles = firstObject.GetComponent<Obstacles>();
     //     obstacles.isFirstObj = true;
@@ -55,23 +52,25 @@ public class ObstacleSpawner : MonoBehaviour
 
     public void RespawnObstacle()
     {
-        RespawnManager();
-
-        FindRandomPoint();
-
         for(int i = 0; i < maxObjectCount; i++)
         {
-            FindRandomPoint();
-            rand = Random.Range(0, ObstacleObjects.Length);
-            GameObject newObstacle = Instantiate(ObstacleObjects[rand], obstacleSpawnLocation, ObstacleObjects[rand].transform.rotation);
-            
-            // Set the Obstacles script's obstaclespawner
-            Obstacles obstaclesScript = newObstacle.GetComponent<Obstacles>();
-            if (obstaclesScript != null)
+            if(i == 0)
             {
-                obstaclesScript.SetObstacleSpawner(this);
-            }   
-        }  
+                Debug.Log("DOES THIS WORK? HELLO!!!! :dddd PLEASE DOOO");
+            }else
+            {
+                FindRandomPoint();
+                rand = Random.Range(0, ListOfObstacleObjects.Length);
+                GameObject newObstacle = Instantiate(ListOfObstacleObjects[rand], obstacleSpawnLocation, ListOfObstacleObjects[rand].transform.rotation);
+
+                // Set the Obstacles script's obstaclespawner
+                Obstacles obstaclesScript = newObstacle.GetComponent<Obstacles>();
+                if (obstaclesScript != null)
+                {
+                    obstaclesScript.SetObstacleSpawner(this);
+                }  
+            }
+        }
     }
 
     private void UpdateObstacleSpeed()
