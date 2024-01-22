@@ -34,6 +34,8 @@ public class ObstacleSpawner : MonoBehaviour
         if(destroyedObjCount >= 4)
         {
             maxObjectCount++;
+
+            destroyedObjCount = 0;
             
             //ListOfObstacleObjects.Length = maxObjectCount;
         }

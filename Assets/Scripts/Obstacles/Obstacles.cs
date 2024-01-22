@@ -43,9 +43,14 @@ public class Obstacles : MonoBehaviour
     {
         if(other.CompareTag("GOBACKTOYOURCOUNTRY"))
         {
-            obstaclespawner.RespawnObstacle();
             Destroy(gameObject);
             obstaclespawner.destroyedObjCount++;
+            
+            if(isFirstObj)
+            {
+                obstaclespawner.RespawnObstacle();
+            }
+            obstaclespawner.RespawnManager();
         }
         if(other.CompareTag("Player"))
         {
