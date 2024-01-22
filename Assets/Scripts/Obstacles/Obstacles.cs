@@ -5,9 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class Obstacles : MonoBehaviour
 {
-    private ObstacleSpawner obstaclespawner; // Instance of ObstacleSpawner
+    public ObstacleSpawner obstaclespawner; // Instance of ObstacleSpawner
 
     public int destroyedObjCount;
+
+    public bool isFirstObj;
 
     // Set the ObstacleSpawner instance
     public void SetObstacleSpawner(ObstacleSpawner spawner)
@@ -22,7 +24,19 @@ public class Obstacles : MonoBehaviour
 
     private void MoveObstacle()
     {
-        transform.Translate(Vector2.left * obstaclespawner.obstacleSpeed * Time.deltaTime, Space.World);
+        if (obstaclespawner == null)
+        {
+            obstaclespawner = GetComponent<ObstacleSpawner>();
+        }
+
+        if (obstaclespawner != null)
+        {
+            transform.Translate(Vector2.left * obstaclespawner.obstacleSpeed * Time.deltaTime, Space.World);
+        }
+        else
+        {
+            Debug.LogError("ObstacleSpawner component not found.");
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)

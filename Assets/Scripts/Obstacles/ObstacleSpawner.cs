@@ -56,7 +56,20 @@ public class ObstacleSpawner : MonoBehaviour
         {
             if(i == 0)
             {
-                Debug.Log("DOES THIS WORK? HELLO!!!! :dddd PLEASE DOOO");
+                FindRandomPoint();
+                rand = Random.Range(0, ListOfObstacleObjects.Length);
+                GameObject newObstacle = Instantiate(ListOfObstacleObjects[rand], obstacleSpawnLocation, ListOfObstacleObjects[rand].transform.rotation);
+
+                Obstacles obstacle = newObstacle.GetComponent<Obstacles>();
+                Obstacles obstaclesScript = newObstacle.GetComponent<Obstacles>();
+
+                if(obstacle != null)
+                {
+                    obstacle.isFirstObj = true;
+                    obstaclesScript.SetObstacleSpawner(this);
+                }
+                
+                //Debug.Log("DOES THIS WORK? HELLO!!!! :dddd PLEASE DOOO");
             }else
             {
                 FindRandomPoint();
@@ -68,7 +81,7 @@ public class ObstacleSpawner : MonoBehaviour
                 if (obstaclesScript != null)
                 {
                     obstaclesScript.SetObstacleSpawner(this);
-                }  
+                }
             }
         }
     }

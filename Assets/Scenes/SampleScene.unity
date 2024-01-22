@@ -984,7 +984,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 657d02b5fc7bdf471844c51578f74c5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ObstacleObjects:
+  ListOfObstacleObjects:
   - {fileID: 5921343542423084874, guid: e835ae46237f42587a427cef781a1ea0, type: 3}
   - {fileID: 3318112276431713087, guid: 705d2fe7bc16da533a668eafa13787ad, type: 3}
   - {fileID: 2103978422235187449, guid: fa9b94a70fe16fc69a0e937cde001aaf, type: 3}
@@ -992,10 +992,8 @@ MonoBehaviour:
   obstacleSpeed: 4
   speedIncreaseInterval: 10
   randomSpawnRadiusModifier: 5
-  maxObjectCount: 1
-  destroyedObjectCount: 3
-  maxObjectIncreaseInterval: 4
-  maxGlobalObjectCount: 12
+  maxObjectCount: 2
+  destroyedObjCount: 0
 --- !u!1 &1806558149
 GameObject:
   m_ObjectHideFlags: 0
