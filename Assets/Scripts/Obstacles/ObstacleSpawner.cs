@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ObstacleSpawner : MonoBehaviour
 {
+
+    public ObstacleSpawnValues obstacleSpawnValues;
     public GameObject[] ListOfObstacleObjects;
     public int rand;
 
