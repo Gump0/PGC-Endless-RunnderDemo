@@ -6,7 +6,7 @@ public class PlayerWallCollide : PlayerMovement
 {
     private PlayerMovement playerMovement; // Instance of PlayerMovement
 
-    private void Start()
+    private void Awake()
     {
         playerMovement = GetComponent<PlayerMovement>();
     }
@@ -18,10 +18,8 @@ public class PlayerWallCollide : PlayerMovement
             // Invert the Z-axis rotation
             float newRotationZ = -transform.rotation.eulerAngles.z;
             transform.rotation = Quaternion.Euler(0f, 0f, newRotationZ);
-
-            // Accessing upCount and downCount through the instance
-            playerMovement.upCount *= -1;
-            playerMovement.downCount *= -1;
+            
+            playerMovement.currentPlayerAngle *= -1;
         }
     }
 }

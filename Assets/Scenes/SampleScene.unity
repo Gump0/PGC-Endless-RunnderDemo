@@ -592,10 +592,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerMoveSpeed: 3
-  playerRotate: 15
-  upCount: 0
-  downCount: 0
-  movementInputCountLimit: 3
+  maximumPlayerAngle: 75
+  defualtPlayerAngle: 0
+  currentPlayerAngle: 0
+  wheelRotationSpeed: 0.85
 --- !u!212 &1128188211
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -757,10 +757,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerMoveSpeed: 4
-  playerRotate: 0
-  upCount: 0
-  downCount: 0
-  movementInputCountLimit: 3
+  maximumPlayerAngle: 70
+  defualtPlayerAngle: 0
+  currentPlayerAngle: 0
+  wheelRotationSpeed: 0.85
 --- !u!1 &1197865038
 GameObject:
   m_ObjectHideFlags: 0
@@ -984,6 +984,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 657d02b5fc7bdf471844c51578f74c5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  obstacleSpawnValues:
+    obstacleSpeed: 4
+    randomSpawnRadiusModifier: 0
+    maxObjectCount: 1
+    destroyedObjCount: 0
+    speedIncreaseInterval: 10
+    speedIncreaseTimer: 0
+    a: 0
+    b: 0
+    c: 0
   ListOfObstacleObjects:
   - {fileID: 5921343542423084874, guid: e835ae46237f42587a427cef781a1ea0, type: 3}
   - {fileID: 3318112276431713087, guid: 705d2fe7bc16da533a668eafa13787ad, type: 3}
