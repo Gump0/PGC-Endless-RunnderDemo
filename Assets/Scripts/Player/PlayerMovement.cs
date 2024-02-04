@@ -5,9 +5,11 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public float playerMoveSpeed = 4;
-    public float maximumPlayerAngle = 70, defualtPlayerAngle = 0, currentPlayerAngle, wheelRotationSpeed = 0.25f
-    , rotationAngle; // REQUIRED values needed for rotation logic
-    void Update()
+    public float maximumPlayerAngle = 70, defualtPlayerAngle = 0, currentPlayerAngle,
+    wheelRotationSpeed = 0.65f, rotationAngle; // REQUIRED values needed for rotation logic
+    
+    private float inputHoldDelay, timeSinceLastInput; // Stuff needed for input timing
+    void FixedUpdate()
     {
         MovePlayer();
         PlayerRotate();
@@ -41,13 +43,32 @@ public class PlayerMovement : MonoBehaviour
     
         transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * wheelRotationSpeed);
 
+        // UP INPUT
         if(Input.GetKeyDown("w") && currentPlayerAngle != maximumPlayerAngle)
         {
             currentPlayerAngle += 10;
         }
+        if(Input.GetKey("w") && currentPlayerAngle != maximumPlayerAngle)
+        {
+            if(Time.time - timeSinceLastInput > inputHoldDelay)
+            {
+                currentPlayerAngle += 10;
+                timeSinceLastInput = Time.time;
+            }
+        }
+
+        // DOWN INPUT
         if(Input.GetKeyDown("s") && currentPlayerAngle != -maximumPlayerAngle)
         {
             currentPlayerAngle -= 10;
+        }
+        if(Input.GetKey("s") && currentPlayerAngle != -maximumPlayerAngle)
+        {
+            if(Time.time - timeSinceLastInput > inputHoldDelay)
+            {
+                currentPlayerAngle -= 10;
+                timeSinceLastInput = Time.time;
+            }
         }
     }
 }
