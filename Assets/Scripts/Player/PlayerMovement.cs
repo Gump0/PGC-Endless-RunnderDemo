@@ -9,12 +9,14 @@ public class PlayerMovement : MonoBehaviour
     public float playerMoveSpeed = 4;
     public float maximumPlayerAngle = 70, defualtPlayerAngle = 0, currentPlayerAngle,
     wheelRotationSpeed = 1.35f, rotationAngle; // REQUIRED values needed for rotation logic
+
+    float elapsedBreakTime;
     
     private float inputHoldDelay, timeSinceLastInput; // Stuff needed for input timing
     void FixedUpdate()
     {
         PlayerRotate();
-        MovePlayer(6f, 4f, 7f, 8.25f); // Values assosiated with this function corresponds to each float introduced in the function 'PlayerBrake()'  
+        MovePlayer(1.25f,7f,8.25f); // Values assosiated with this function corresponds to each float introduced in the function 'PlayerBrake()'  
     }
 
    private void PlayerRotate()
@@ -56,7 +58,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void MovePlayer(float brakeSpeed, float returnspeed, float defaultConstrainValue, float maxBrakeDistance)
+    private void MovePlayer(float timeToBrake, float defaultConstrainValue, float maxBrakeDistance)
     {   
         //Apply repeated force to the player allowing them to turn when rotating
         transform.Translate(Vector2.right * playerMoveSpeed * Time.deltaTime, Space.Self);
@@ -67,19 +69,21 @@ public class PlayerMovement : MonoBehaviour
         updatedPlayerPosition.x = constrainObject.transform.position.x;
         // And apply it here :D
         transform.position = updatedPlayerPosition;
-        float timeInterprelation;
-
+        
         if(Input.GetMouseButton(0))
         {
-            timeInterprelation = Mathf.Lerp(0f, 1f, brakeSpeed * Time.deltaTime);
-            // set updatedPlayerPosition.x to -8.25f overtime
-            updatedPlayerPosition.x = Mathf.Lerp(updatedPlayerPosition.x, -maxBrakeDistance, timeInterprelation);
+           elapsedBreakTime += Time.deltaTime;
+
+           float t = Mathf.Clamp01(elapsedBreakTime/timeToBrake);
+           updatedPlayerPosition.x = Mathf.Lerp(-defaultConstrainValue, -maxBrakeDistance, t);
         }
         else
         {
-            timeInterprelation = Mathf.Lerp(0f, 1f, returnspeed * Time.deltaTime);
-            // set updatedPlayerPosition.x to -7f overtime
-            updatedPlayerPosition.x = Mathf.Lerp(updatedPlayerPosition.x, -defaultConstrainValue, timeInterprelation);
+            float rt = Mathf.Clamp01(updatedPlayerPosition.x/defaultConstrainValue);
+            Debug.Log(updatedPlayerPosition.x);
+            Debug.Log(rt);
+            updatedPlayerPosition.x = Mathf.Lerp(updatedPlayerPosition.x, -defaultConstrainValue, rt);
+            elapsedBreakTime = 0;
         }
         // Update transform
         transform.position = updatedPlayerPosition;
