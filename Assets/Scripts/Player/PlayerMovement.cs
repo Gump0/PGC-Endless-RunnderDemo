@@ -4,33 +4,17 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public Transform constrainObject;
+
     public float playerMoveSpeed = 4;
     public float maximumPlayerAngle = 70, defualtPlayerAngle = 0, currentPlayerAngle,
-    wheelRotationSpeed = 0.65f, rotationAngle; // REQUIRED values needed for rotation logic
+    wheelRotationSpeed = 1.35f, rotationAngle; // REQUIRED values needed for rotation logic
     
     private float inputHoldDelay, timeSinceLastInput; // Stuff needed for input timing
     void FixedUpdate()
     {
-        MovePlayer();
         PlayerRotate();
-        Debug.Log(currentPlayerAngle);
-    }
-
-    private void MovePlayer()
-    {
-        Vector3 playerConstrain = new Vector3(-7, transform.position.y, transform.position.z);
-        transform.position = playerConstrain;
-        transform.Translate(Vector2.right * playerMoveSpeed * Time.deltaTime, Space.Self);
-
-        if(currentPlayerAngle > maximumPlayerAngle)
-        {
-            currentPlayerAngle = maximumPlayerAngle;
-        }
-        
-        if(currentPlayerAngle < -maximumPlayerAngle)
-        {
-            currentPlayerAngle = -maximumPlayerAngle;
-        }
+        MovePlayer(6f, 4f, 7f, 8.25f); // Values assosiated with this function corresponds to each float introduced in the function 'PlayerBrake()'  
     }
 
    private void PlayerRotate()
@@ -52,8 +36,8 @@ public class PlayerMovement : MonoBehaviour
         {
             if(Time.time - timeSinceLastInput > inputHoldDelay)
             {
-                currentPlayerAngle += 10;
                 timeSinceLastInput = Time.time;
+                currentPlayerAngle += 10;
             }
         }
 
@@ -66,9 +50,38 @@ public class PlayerMovement : MonoBehaviour
         {
             if(Time.time - timeSinceLastInput > inputHoldDelay)
             {
-                currentPlayerAngle -= 10;
                 timeSinceLastInput = Time.time;
+                currentPlayerAngle -= 10;
             }
         }
+    }
+
+    private void MovePlayer(float brakeSpeed, float returnspeed, float defaultConstrainValue, float maxBrakeDistance)
+    {   
+        //Apply repeated force to the player allowing them to turn when rotating
+        transform.Translate(Vector2.right * playerMoveSpeed * Time.deltaTime, Space.Self);
+
+        // Takes player transform value and creates a new Vector3 value
+        // with the created 'updatedPlayerPosition' we assign the constrain objects x value
+        Vector3 updatedPlayerPosition = transform.position;
+        updatedPlayerPosition.x = constrainObject.transform.position.x;
+        // And apply it here :D
+        transform.position = updatedPlayerPosition;
+        float timeInterprelation;
+
+        if(Input.GetMouseButton(0))
+        {
+            timeInterprelation = Mathf.Lerp(0f, 1f, brakeSpeed * Time.deltaTime);
+            // set updatedPlayerPosition.x to -8.25f overtime
+            updatedPlayerPosition.x = Mathf.Lerp(updatedPlayerPosition.x, -maxBrakeDistance, timeInterprelation);
+        }
+        else
+        {
+            timeInterprelation = Mathf.Lerp(0f, 1f, returnspeed * Time.deltaTime);
+            // set updatedPlayerPosition.x to -7f overtime
+            updatedPlayerPosition.x = Mathf.Lerp(updatedPlayerPosition.x, -defaultConstrainValue, timeInterprelation);
+        }
+        // Update transform
+        transform.position = updatedPlayerPosition;
     }
 }
