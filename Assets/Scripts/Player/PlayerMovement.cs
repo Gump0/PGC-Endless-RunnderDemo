@@ -4,19 +4,17 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public Transform constrainObject;
-
     public float playerMoveSpeed = 4;
     public float maximumPlayerAngle = 70, defualtPlayerAngle = 0, currentPlayerAngle,
     wheelRotationSpeed = 1.35f, rotationAngle; // REQUIRED values needed for rotation logic
 
-    float elapsedBreakTime;
+    float elapsedBrakeTime;
     
     private float inputHoldDelay, timeSinceLastInput; // Stuff needed for input timing
     void FixedUpdate()
     {
         PlayerRotate();
-        MovePlayer(1.25f,7f,8.25f); // Values assosiated with this function corresponds to each float introduced in the function 'PlayerBrake()'  
+        MovePlayer(1.25f, 0.5f, 7f, 8.25f); // Values assosiated with this function corresponds to each float introduced in the function 'PlayerBrake()'  
     }
 
    private void PlayerRotate()
@@ -58,33 +56,26 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void MovePlayer(float timeToBrake, float defaultConstrainValue, float maxBrakeDistance)
+    private void MovePlayer(float timeToBrake, float timeToReturn, float defaultConstrainValue, float maxBrakeDistance)
     {   
-        //Apply repeated force to the player allowing them to turn when rotating
         transform.Translate(Vector2.right * playerMoveSpeed * Time.deltaTime, Space.Self);
-
-        // Takes player transform value and creates a new Vector3 value
-        // with the created 'updatedPlayerPosition' we assign the constrain objects x value
         Vector3 updatedPlayerPosition = transform.position;
-        updatedPlayerPosition.x = constrainObject.transform.position.x;
-        // And apply it here :D
-        transform.position = updatedPlayerPosition;
-        
+
         if(Input.GetMouseButton(0))
         {
-           elapsedBreakTime += Time.deltaTime;
-
-           float t = Mathf.Clamp01(elapsedBreakTime/timeToBrake);
+           elapsedBrakeTime += Time.deltaTime;
+           float t = Mathf.Clamp01(elapsedBrakeTime/timeToBrake);
            updatedPlayerPosition.x = Mathf.Lerp(-defaultConstrainValue, -maxBrakeDistance, t);
         }
         else
         {
-            float rt = Mathf.Clamp01(updatedPlayerPosition.x/defaultConstrainValue);
-            Debug.Log(updatedPlayerPosition.x);
-            Debug.Log(rt);
-            updatedPlayerPosition.x = Mathf.Lerp(updatedPlayerPosition.x, -defaultConstrainValue, rt);
-            elapsedBreakTime = 0;
+            elapsedBrakeTime = 0f;
+            float t = Mathf.Clamp01(Time.deltaTime/timeToReturn);
+            updatedPlayerPosition.x = Mathf.MoveTowards(updatedPlayerPosition.x, -defaultConstrainValue, timeToReturn * Time.deltaTime);
         }
+        // Ensure the player does not exceed the defaultConstrainValue
+        updatedPlayerPosition.x = Mathf.Clamp(updatedPlayerPosition.x, -maxBrakeDistance, -defaultConstrainValue);
+
         // Update transform
         transform.position = updatedPlayerPosition;
     }
