@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class ScoreCount : MonoBehaviour
 {
-    protected float playerScoreCount;
+    public float playerScoreCount;
     public Text scoreText;
 
     void Update()

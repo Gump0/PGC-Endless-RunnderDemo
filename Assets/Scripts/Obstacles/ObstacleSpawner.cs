@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ObstacleSpawner : MonoBehaviour
 {
-
     public ObstacleSpawnValues obstacleSpawnValues;
     public GameObject[] ListOfObstacleObjects;
     public int rand;
@@ -20,15 +19,28 @@ public class ObstacleSpawner : MonoBehaviour
 
     public int maxObjectCount = 1;
     public int destroyedObjCount;
+
+    //Car Spawn Stuff
+    public float spawnChanceFactor;
+    public GameObject[] spawnableCarArray;
     
     void Start()
     {
         Invoke("RespawnObstacle", 0.1f);
+        InvokeRepeating("CallRollCarSpawn", 4f, 6f);
+    }
+
+    //Apparently Invoke methods cant call functions with parameters lol so imma do this for now
+    private void CallRollCarSpawn()
+    {
+        RollCarSpawn(1, 8f, 25f);
     }
 
     void Update()
     {
         UpdateObstacleSpeed();
+        // For car spawn alorithm
+        spawnChanceFactor += Time.deltaTime;
     }
 
     public void RespawnManager()
@@ -38,21 +50,8 @@ public class ObstacleSpawner : MonoBehaviour
             maxObjectCount++;
 
             destroyedObjCount = 0;
-            
-            //ListOfObstacleObjects.Length = maxObjectCount;
         }
     }
-
-    //The first obstacle is in charge of keeping count of 'destroyedObjCount'
-    // public void SpawnFirstObstacle()
-    // {
-    //     FindRandomPoint();
-    //     rand = Random.Range(0, ListOfObstacleObjects.Length);
-    //     GameObject firstObject = Instantiate(ListOfObstacleObjects[rand], obstacleSpawnLocation, ListOfObstacleObjects[rand].transform.rotation);
-
-    //     Obstacles obstacles = firstObject.GetComponent<Obstacles>();
-    //     obstacles.isFirstObj = true;
-    // }
 
     public void RespawnObstacle()
     {
@@ -105,5 +104,26 @@ public class ObstacleSpawner : MonoBehaviour
     {
         Vector2 randomSpawnOffset = Random.insideUnitCircle * randomSpawnRadiusModifier;
         obstacleSpawnLocation = new Vector3(randomSpawnOffset.x + transform.position.x, randomSpawnOffset.y + transform.position.y, transform.position.z);
+    }
+
+    private void RollCarSpawn(int maxNumberOfCars, float probabilityIncrease, float carRollProbability)
+    {
+        carRollProbability = carRollProbability + maxNumberOfCars + (spawnChanceFactor/10);
+        float rand = Random.Range(0,100f);
+        if(carRollProbability >= rand)
+        {
+            probabilityIncrease = 0;
+
+            GameObject[] carSpawners = GameObject.FindGameObjectsWithTag("Spawner");
+
+            foreach (GameObject carSpawner in carSpawners)
+            {
+                Instantiate(spawnableCarArray[Random.Range(0, spawnableCarArray.Length)], carSpawners[Random.Range(0, carSpawners.Length)].transform.position, Quaternion.identity);
+                Debug.Log("WEGOTACAR!");
+            }
+        }
+        else{
+            probabilityIncrease += 5;
+        }
     }
 }
