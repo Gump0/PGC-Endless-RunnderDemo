@@ -514,9 +514,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2012902426502586149}
   - component: {fileID: 3964314756825921165}
+  - component: {fileID: -6432181384745472159}
   m_Layer: 0
   m_Name: PickupTruck
-  m_TagString: Untagged
+  m_TagString: DynamicObstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -594,3 +595,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-6432181384745472159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8776297194706571441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58d011fc03913f5978084caa750d58e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obstaclespawner: {fileID: 0}
+  destroyedObjCount: 0
+  isFirstObj: 0

@@ -7,6 +7,8 @@ TagManager:
   - Wall
   - GOBACKTOYOURCOUNTRY
   - Spawner
+  - StaticObstacle
+  - DynamicObstacle
   layers:
   - Default
   - TransparentFX

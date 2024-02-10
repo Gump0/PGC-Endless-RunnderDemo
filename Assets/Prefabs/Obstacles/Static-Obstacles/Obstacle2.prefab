@@ -11,11 +11,11 @@ GameObject:
   - component: {fileID: 7895775842664750619}
   - component: {fileID: 6091374217365955574}
   - component: {fileID: -7301372752270455168}
-  - component: {fileID: 719070983752371770}
   - component: {fileID: -7848447728508492395}
+  - component: {fileID: -6187309970816435153}
   m_Layer: 0
   m_Name: Obstacle2
-  m_TagString: Untagged
+  m_TagString: StaticObstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -132,19 +132,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &719070983752371770
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3318112276431713087}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58d011fc03913f5978084caa750d58e0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  obstacleSpeed: 5
 --- !u!50 &-7848447728508492395
 Rigidbody2D:
   serializedVersion: 4
@@ -172,3 +159,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &-6187309970816435153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3318112276431713087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58d011fc03913f5978084caa750d58e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obstaclespawner: {fileID: 0}
+  destroyedObjCount: 0
+  isFirstObj: 0
