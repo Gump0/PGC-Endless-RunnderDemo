@@ -17,10 +17,7 @@ public class Obstacles : MonoBehaviour
     {
         obstaclespawner = spawner;
     }
-    // void Start()
-    // {
-    //     obstaclespawner = GetComponent<ObstacleSpawner>();
-    // }
+
     public void Update()
     {
         MoveObstacle(); // Constantly call and update MoveObstacle function
@@ -75,23 +72,7 @@ public class Obstacles : MonoBehaviour
         }
         if(other.CompareTag("Player"))
         {
-            SceneManager.LoadScene("SampleScene", LoadSceneMode.Single);
+            SceneManager.LoadScene("GameScene", LoadSceneMode.Single);
         }
     } 
-
-    // public static Obstacles CreateObstaclesWithTag(string tag)
-    // {
-    //     if(tag == "StaticObstacle")
-    //     {
-    //         return new StaticObstacles();
-    //     }
-    //     else if(tag == "DynamicObstacle")
-    //     {
-    //         return new CarObstacles();
-    //     }
-    //     else{
-    //         Debug.Log("Unkown obj tag: " +tag);
-    //         return null;
-    //     }
-    // }
 }

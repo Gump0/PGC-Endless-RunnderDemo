@@ -27,7 +27,7 @@ public class ObstacleSpawner : MonoBehaviour
     void Start()
     {
         Invoke("RespawnObstacle", 0.1f);
-        InvokeRepeating("CallRollCarSpawn", 4f, 6f);
+        InvokeRepeating("CallRollCarSpawn", 2, 7);
     }
 
     //Apparently Invoke methods cant call functions with parameters lol so imma do this for now
@@ -71,8 +71,6 @@ public class ObstacleSpawner : MonoBehaviour
                     obstacle.isFirstObj = true;
                     obstaclesScript.SetObstacleSpawner(this);
                 }
-                
-                //Debug.Log("DOES THIS WORK? HELLO!!!! :dddd PLEASE DOOO");
             }else
             {
                 FindRandomPoint();
