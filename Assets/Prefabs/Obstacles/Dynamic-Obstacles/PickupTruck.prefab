@@ -515,6 +515,7 @@ GameObject:
   - component: {fileID: 2012902426502586149}
   - component: {fileID: 3964314756825921165}
   - component: {fileID: -6432181384745472159}
+  - component: {fileID: -950702760421966412}
   m_Layer: 0
   m_Name: PickupTruck
   m_TagString: DynamicObstacle
@@ -610,3 +611,19 @@ MonoBehaviour:
   obstaclespawner: {fileID: 0}
   destroyedObjCount: 0
   isFirstObj: 0
+--- !u!114 &-950702760421966412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8776297194706571441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 617460beba2f430aebbe597add379743, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obstaclespawner: {fileID: 0}
+  destroyedObjCount: 0
+  isFirstObj: 0
+  playerMovement: {fileID: 0}

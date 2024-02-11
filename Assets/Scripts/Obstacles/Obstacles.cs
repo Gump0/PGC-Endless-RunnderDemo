@@ -37,7 +37,6 @@ public class Obstacles : MonoBehaviour
 
         if (obstTag == "StaticObstacle")
         {
-            // Use logic from the StaticObstacles subclass
             StaticObstacles staticObstacle = GetComponent<StaticObstacles>();
             if (staticObstacle != null)
             {
@@ -50,11 +49,10 @@ public class Obstacles : MonoBehaviour
         }
         else if (obstTag == "DynamicObstacle")
         {
-            // Use logic from the CarObstacles subclass
-            CarObstacles dynamicObstacle = GetComponent<CarObstacles>();
-            if (dynamicObstacle != null)
+            CarObstacles carObstacle = GetComponent<CarObstacles>();
+            if (carObstacle != null)
             {
-                dynamicObstacle.MoveObstacle();
+                carObstacle.MoveObstacle();
             }
             else
             {
@@ -96,28 +94,4 @@ public class Obstacles : MonoBehaviour
     //         return null;
     //     }
     // }
-}
-//CLASS FOR STATIC OBSTACLE LOGIC//
-public class StaticObstacles : Obstacles
-{
-    protected override void MoveObstacle()
-    {
-        // base.MoveObstacle();
-        
-        // GameObject statObst = GameObject.FindGameObjectWithTag("StaticObstacle");
-        // //statObst.transform.position = transform.Translate(Vector2.left * obstaclespawner.obstacleSpeed * Time.deltaTime, Space.World);
-
-        // Debug.Log("STATICOBJECT IS BEING CALLED YAY!!!");
-    }
-}
-//CLASS FOR DYNAMIC OBSTACLE LOGIC//
-public class CarObstacles : Obstacles
-{
-    public PlayerMovement playerMovement;// Instance of player move script to reference player speed :3
-
-    protected override void MoveObstacle()
-    {
-    //     base.MoveObstacle();
-    //     GameObject dynObst = GameObject.FindGameObjectWithTag("DynamicObstacle");
-    }
 }

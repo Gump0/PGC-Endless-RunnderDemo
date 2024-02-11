@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2239390863089043625}
   - component: {fileID: -1266153110715359979}
   - component: {fileID: -2206050202331284010}
+  - component: {fileID: 1112575787047828050}
   m_Layer: 0
   m_Name: Obstacle3
   m_TagString: StaticObstacle
@@ -169,6 +170,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 58d011fc03913f5978084caa750d58e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obstaclespawner: {fileID: 0}
+  destroyedObjCount: 0
+  isFirstObj: 0
+--- !u!114 &1112575787047828050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2103978422235187449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9843af915adbc5d9a82148b0183c5040, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   obstaclespawner: {fileID: 0}
