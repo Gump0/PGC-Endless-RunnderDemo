@@ -47,8 +47,11 @@ public class ObstacleSpawner : MonoBehaviour
     {
         if(destroyedObjCount >= 4)
         {
-            maxObjectCount++;
-
+            //Hard caps number of maximum static objects to 5
+            if (maxObjectCount < 5)
+            {
+                maxObjectCount++;
+            }
             destroyedObjCount = 0;
         }
     }

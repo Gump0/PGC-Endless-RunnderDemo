@@ -7,10 +7,12 @@ public class PlayerMovement : MonoBehaviour
     public float playerMoveSpeed = 4;
     public float maximumPlayerAngle = 70, defualtPlayerAngle = 0, currentPlayerAngle,
     wheelRotationSpeed = 1.35f, rotationAngle; // REQUIRED values needed for rotation logic
-
     float elapsedBrakeTime;
     
-    private float inputHoldDelay, timeSinceLastInput; // Stuff needed for input timing
+    // Stuff needed for input timing
+    [SerializeField]
+    private float inputHoldDelay = 0.050f; 
+    private float timeSinceLastInput; 
     void FixedUpdate()
     {
         PlayerRotate();
