@@ -16,6 +16,7 @@ public class ObstacleSpawner : MonoBehaviour
     //Spawn Algorithm Stuff//
     private Vector3 obstacleSpawnLocation;
     public int randomSpawnRadiusModifier;
+    private HashSet<Vector3> spawnedPositions = new HashSet<Vector3>(); // Store positions of spawned objects
 
     public int maxObjectCount = 1;
     public int destroyedObjCount;
@@ -103,9 +104,34 @@ public class ObstacleSpawner : MonoBehaviour
 
     private void FindRandomPoint()
     {
-        Vector2 randomSpawnOffset = Random.insideUnitCircle * randomSpawnRadiusModifier;
-        obstacleSpawnLocation = new Vector3(randomSpawnOffset.x + transform.position.x, randomSpawnOffset.y + transform.position.y, transform.position.z);
+        float minDistance = 2.0f; // Minimum distance between spawns
+        float maxAttempts = 10; // Maximum attempts to find a suitable position
+        
+        for(int i = 0; i < maxAttempts; i++)
+        {
+            Vector2 randomSpawnOffset = Random.insideUnitCircle * randomSpawnRadiusModifier;
+            obstacleSpawnLocation = new Vector3(randomSpawnOffset.x + transform.position.x, randomSpawnOffset.y + transform.position.y, transform.position.z);
+
+            if(!IsPositionOccupied(obstacleSpawnLocation, minDistance))
+            {
+                spawnedPositions.Add(obstacleSpawnLocation);
+                return;
+            }
+        }
     }
+
+    private bool IsPositionOccupied(Vector3 position, float minDistance)
+{
+    foreach (Vector3 spawnedPosition in spawnedPositions)
+    {
+        if (Vector3.Distance(position, spawnedPosition) < minDistance)
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
 
     private void RollCarSpawn(int maxNumberOfCars, float probabilityIncrease, float carRollProbability)
     {
