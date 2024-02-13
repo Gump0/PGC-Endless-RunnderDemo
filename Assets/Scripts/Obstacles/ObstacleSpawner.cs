@@ -22,6 +22,7 @@ public class ObstacleSpawner : MonoBehaviour
     public int destroyedObjCount;
 
     //Car Spawn Stuff
+    public CheckIfCarSpawnable checkIfCarSpawnable; // Reference to car spawner script
     public float spawnChanceFactor;
     public GameObject[] spawnableCarArray;
     
@@ -145,8 +146,12 @@ public class ObstacleSpawner : MonoBehaviour
 
             foreach (GameObject carSpawner in carSpawners)
             {
-                Instantiate(spawnableCarArray[Random.Range(0, spawnableCarArray.Length)], carSpawners[Random.Range(0, carSpawners.Length)].transform.position, Quaternion.identity);
-                Debug.Log("WEGOTACAR!");
+                if(checkIfCarSpawnable.carIsAllowedToSpawn)
+                {
+                    checkIfCarSpawnable.CheckIfSpawnable();
+                    Instantiate(spawnableCarArray[Random.Range(0, spawnableCarArray.Length)], carSpawners[Random.Range(0, carSpawners.Length)].transform.position, Quaternion.identity);
+                    Debug.Log("WEGOTACAR!");
+                }
             }
         }
         else{
