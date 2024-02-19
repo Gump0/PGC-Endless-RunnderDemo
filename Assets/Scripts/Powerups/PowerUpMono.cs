@@ -4,15 +4,22 @@ using UnityEngine;
 
 public class PowerUpMono : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public ObstacleSpawner obstaclespawner; // Instance of Obstacle Spawner Monobehavior to reference obstacle stats
 
-    // Update is called once per frame
+    protected float powerUpVerticalSpeed;
+
     void Update()
     {
-        
+        MovePowerUp();
+    }
+
+    private void MovePowerUp()
+    {
+
+    }
+
+    public void OnTriggerEnter2D(Collider2D collider)
+    {
+        //On trigger logic shared between all powerups (if thats the case lol)
     }
 }

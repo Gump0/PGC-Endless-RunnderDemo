@@ -723,6 +723,7 @@ MonoBehaviour:
   currentPlayerAngle: 0
   wheelRotationSpeed: 0.85
   rotationAngle: 0
+  rotationIncreaseVariable: 0
   inputHoldDelay: 0.05
 --- !u!212 &1128188211
 SpriteRenderer:
@@ -890,6 +891,7 @@ MonoBehaviour:
   currentPlayerAngle: 0
   wheelRotationSpeed: 0.85
   rotationAngle: 0
+  rotationIncreaseVariable: 15
   inputHoldDelay: 0.075
 --- !u!1 &1132460068
 GameObject:

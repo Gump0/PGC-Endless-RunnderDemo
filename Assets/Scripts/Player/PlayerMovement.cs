@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     public float maximumPlayerAngle = 70, defualtPlayerAngle = 0, currentPlayerAngle,
     wheelRotationSpeed = 1.35f, rotationAngle; // REQUIRED values needed for rotation logic
     float elapsedBrakeTime;
+    [SerializeField] private float rotationIncreaseVariable;
     
     // Stuff needed for input timing
     [SerializeField]
