@@ -4,8 +4,16 @@ using UnityEngine;
 
 public class ShrinkPowerUpLogic : PowerUpMono
 {
-    public void OnTriggerEnter2D(Collider2D collider)
+    protected override void MovePowerUp()
     {
-        //Shrink Power-up stuff
+        
+    }
+
+    protected override void OnTriggerEnter2D(Collider2D collider)
+    {
+        if(collider.CompareTag("Player"))
+        {
+            //Shrink Power-up stuff
+        }
     }
 }
