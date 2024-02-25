@@ -13,11 +13,16 @@ public class PlayerMovement : MonoBehaviour
     // Stuff needed for input timing
     [SerializeField]
     private float inputHoldDelay = 0.050f; 
-    private float timeSinceLastInput; 
+    private float timeSinceLastInput;
+
+    //Used to for newly implemented bounce limit
+    public bool canWallBounce;
+
     void FixedUpdate()
     {
         PlayerRotate();
-        MovePlayer(1.25f, 0.5f, 7f, 8.25f); // Values assosiated with this function corresponds to each float introduced in the function 'PlayerBrake()'  
+        MovePlayer(1.25f, 0.5f, 7f, 8.25f); // Values assosiated with this function corresponds to each float introduced in the function 'PlayerBrake()'
+        WallBounceLimit(45);  
     }
 
    private void PlayerRotate()
@@ -81,5 +86,16 @@ public class PlayerMovement : MonoBehaviour
 
         // Update transform
         transform.position = updatedPlayerPosition;
+    }
+
+    // Can only wallbounce if the player is traveling with a high enough angle for a long enough peroid of time
+    void WallBounceLimit(int angleBounceLimitValue)
+    {
+        if(currentPlayerAngle >= angleBounceLimitValue || currentPlayerAngle <= -angleBounceLimitValue){
+            canWallBounce = true;
+        }
+        else{
+            canWallBounce = false;
+        }
     }
 }
