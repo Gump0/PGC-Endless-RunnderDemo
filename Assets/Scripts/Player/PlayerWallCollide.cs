@@ -9,7 +9,6 @@ public class PlayerWallCollide : PlayerMovement
     private void Awake()
     {
         playerMovement = GetComponent<PlayerMovement>();
-        
     }
 
     private void OnTriggerEnter2D(Collider2D other)
