@@ -24,7 +24,7 @@ public class PowerUpMono : MonoBehaviour
     {
         if(obstaclespawner == null)
         {
-            obstaclespawner = GetComponent<ObstacleSpawner>();
+            obstaclespawner = GameObject.Find("SpawnerObject").GetComponent<ObstacleSpawner>();
         }
         //Logic for horizontal movement
         transform.Translate(Vector3.left * obstaclespawner.obstacleSpeed * horizontalMoveRatio * Time.deltaTime);

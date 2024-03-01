@@ -15,7 +15,7 @@ public class PowerUpSpawn : MonoBehaviour
 
     void Update(){
         SpawnPowerUpsRandomly();
-        MovePowerUpSpawner(3f);
+        MovePowerUpSpawner();
     }
 
     void SpawnPowerUpsRandomly(){
@@ -38,7 +38,7 @@ public class PowerUpSpawn : MonoBehaviour
         }
     }
 
-    private void MovePowerUpSpawner(float spawnerMoveSpeed){
+    private void MovePowerUpSpawner(){
         float pingPongValue = Mathf.PingPong(Time.time, 1f);
         transform.position = Vector3.Lerp(startPoint.position, endPoint.position, pingPongValue);
     }
