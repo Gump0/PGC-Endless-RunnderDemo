@@ -150,7 +150,7 @@ public class ObstacleSpawner : MonoBehaviour
                 {
                     checkIfCarSpawnable.CheckIfSpawnable();
                     Instantiate(spawnableCarArray[Random.Range(0, spawnableCarArray.Length)], carSpawners[Random.Range(0, carSpawners.Length)].transform.position, Quaternion.identity);
-                    Debug.Log("WEGOTACAR!");
+                    //Debug.Log("WEGOTACAR!");
                 }
             }
         }

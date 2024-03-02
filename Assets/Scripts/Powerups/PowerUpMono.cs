@@ -42,9 +42,9 @@ public class PowerUpMono : MonoBehaviour
         }
     }
 
-    protected virtual void OnTriggerEnter2D(Collider2D collider)
+    protected virtual void OnTriggerEnter2D(Collider2D other)
     {
-        if(collider.CompareTag("Wall"))
+        if(other.CompareTag("Wall"))
         {
             switch(isMovingUp)
             {
@@ -57,8 +57,14 @@ public class PowerUpMono : MonoBehaviour
                 break;
             }
         }
-
+        if(other.CompareTag("Player")){
+            PowerUpSpecial();
+        }
         //On trigger logic shared between all powerups (if thats the case lol)
+    }
+
+    protected virtual void PowerUpSpecial(){
+        //PLACE CODE HERE FOR FOLLOWING UNIQUE POWERUP
     }
 
     private void SetRandomBool()

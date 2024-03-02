@@ -161,6 +161,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obstaclespawner: {fileID: 0}
-  powerUpVerticalSpeed: 0
-  horizontalMoveRatio: 0
+  powerUpVerticalSpeed: 1
+  horizontalMoveRatio: 0.6
   isMovingUp: 0
