@@ -148,6 +148,11 @@ MonoBehaviour:
   powerUpVerticalSpeed: 2.5
   horizontalMoveRatio: 0.6
   isMovingUp: 0
+  elapsedTime: 0
+  timeToShrink: 2
+  maxShrinkTime: 20
+  t: 0
+  playerObj: {fileID: 0}
 --- !u!114 &-3564230343129218447
 MonoBehaviour:
   m_ObjectHideFlags: 0
