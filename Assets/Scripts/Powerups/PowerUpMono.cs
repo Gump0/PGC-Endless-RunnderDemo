@@ -45,6 +45,7 @@ public class PowerUpMono : MonoBehaviour
     {
         if(other.CompareTag("Wall"))
         {
+            Debug.Log("Dinked A Wall");
             switch(isMovingUp)
             {
                 case true:
@@ -57,6 +58,7 @@ public class PowerUpMono : MonoBehaviour
             }
         }
         if(other.CompareTag("Player")){
+            Debug.Log("Dinked A Player");
             PowerUpSpecial();
         }
         //On trigger logic shared between all powerups (if thats the case lol)
