@@ -20,6 +20,7 @@ public class PlayerWallCollide : PlayerMovement
             transform.rotation = Quaternion.Euler(0f, 0f, newRotationZ);
             
             playerMovement.currentPlayerAngle *= -1;
+            TelemetryLogger.Log(this, "Player collided with wall at this time", Time.time);
         }
     }
 }
