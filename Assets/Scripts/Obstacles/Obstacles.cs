@@ -72,6 +72,7 @@ public class Obstacles : MonoBehaviour
         }
         if(other.CompareTag("Player"))
         {
+            TelemetryLogger.Log(this, "Died at this time", Time.deltaTime);
             SceneManager.LoadScene("GameScene", LoadSceneMode.Single);
         }
     } 

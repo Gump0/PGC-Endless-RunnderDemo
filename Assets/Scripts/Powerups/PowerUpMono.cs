@@ -5,6 +5,7 @@ using UnityEngine;
 public class PowerUpMono : MonoBehaviour
 {
     public ObstacleSpawner obstaclespawner; // Instance of Obstacle Spawner Monobehavior to reference obstacle stats
+    [SerializeField] ScoreCount scoreCount; // Instance of scorecount
     
     [SerializeField] protected float powerUpVerticalSpeed, horizontalMoveRatio;
         
@@ -45,7 +46,6 @@ public class PowerUpMono : MonoBehaviour
     {
         if(other.CompareTag("Wall"))
         {
-            Debug.Log("Dinked A Wall");
             switch(isMovingUp)
             {
                 case true:
@@ -58,8 +58,8 @@ public class PowerUpMono : MonoBehaviour
             }
         }
         if(other.CompareTag("Player")){
-            Debug.Log("Dinked A Player");
             PowerUpSpecial();
+            TelemetryLogger.Log(this, "PowerUp Consumption", scoreCount.playerScoreCount);
         }
         //On trigger logic shared between all powerups (if thats the case lol)
     }
