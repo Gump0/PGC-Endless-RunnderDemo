@@ -16,7 +16,7 @@ MonoBehaviour:
   secret: posture competition
   _version: test
   _serverURL: https://dd-delemetry-1-2a4510835c2b.herokuapp.com/
-  serverCommunication: 2
+  serverCommunication: 1
   debugLogging: 0
   <SetupId>k__BackingField: fedora > PGC-Endless-RunnderDemo / PGC-Endless-RunnerDemo
     @ gb-855281306
