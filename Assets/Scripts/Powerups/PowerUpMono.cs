@@ -5,8 +5,7 @@ using UnityEngine;
 public class PowerUpMono : MonoBehaviour
 {
     public ObstacleSpawner obstaclespawner; // Instance of Obstacle Spawner Monobehavior to reference obstacle stats
-    [SerializeField] ScoreCount scoreCount; // Instance of scorecount
-    
+    [SerializeField] public ScoreCount scoreCount; // Instance of scorecount
     [SerializeField] protected float powerUpVerticalSpeed, horizontalMoveRatio;
         
     public bool isMovingUp;
@@ -59,7 +58,7 @@ public class PowerUpMono : MonoBehaviour
         }
         if(other.CompareTag("Player")){
             PowerUpSpecial();
-            TelemetryLogger.Log(this, "PowerUp Consumption", scoreCount.playerScoreCount);
+            TelemetryLogger.Log(this, "PowerUp Consumption", Time.deltaTime);
         }
         //On trigger logic shared between all powerups (if thats the case lol)
     }
