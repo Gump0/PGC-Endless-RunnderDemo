@@ -1142,7 +1142,9 @@ MonoBehaviour:
   - serializedVersion: 2
     rgba: 4293493545
   - serializedVersion: 2
-    rgba: 4292158322
+    rgba: 4292159779
+  - serializedVersion: 2
+    rgba: 4292751238
   - serializedVersion: 2
     rgba: 4292095966
 --- !u!1 &1132460068
