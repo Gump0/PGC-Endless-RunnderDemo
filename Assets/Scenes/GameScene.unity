@@ -1130,6 +1130,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerIsImmune: 0
+  colorArray:
+  - serializedVersion: 2
+    rgba: 4279901911
+  - serializedVersion: 2
+    rgba: 4281959130
+  - serializedVersion: 2
+    rgba: 4281065979
+  - serializedVersion: 2
+    rgba: 4280867206
+  - serializedVersion: 2
+    rgba: 4293493545
+  - serializedVersion: 2
+    rgba: 4292158322
+  - serializedVersion: 2
+    rgba: 4292095966
 --- !u!1 &1132460068
 GameObject:
   m_ObjectHideFlags: 0
