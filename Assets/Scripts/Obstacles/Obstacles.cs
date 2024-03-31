@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class Obstacles : MonoBehaviour
 {
     public ObstacleSpawner obstaclespawner; // Instance of ObstacleSpawner
+    private GameObject playerObjReference; // For some reason the game decided to not detect the player anymore!!! So we slap this here :D
     
     [SerializeField] private ImmunityCheck immunityCheck; // Lazy Immunity Patch :P
     
@@ -21,7 +22,12 @@ public class Obstacles : MonoBehaviour
     }
 
     void Start(){
-        immunityCheck = GameObject.Find("Player").GetComponent<ImmunityCheck>();
+        if(immunityCheck == null){
+            immunityCheck = GameObject.Find("Player").GetComponent<ImmunityCheck>();
+        }
+        if(playerObjReference == null){
+            playerObjReference = GameObject.Find("Player");
+        }
     }
 
     public void Update()
@@ -76,12 +82,10 @@ public class Obstacles : MonoBehaviour
             }
             obstaclespawner.RespawnManager();
         }
-        if(other.CompareTag("Player"))
+        if(other.gameObject == playerObjReference && !immunityCheck.playerIsImmune)
         {
-            if(!immunityCheck.playerIsImmune){
-                TelemetryLogger.Log(this, "Died at this time", Time.deltaTime);
-                SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
-            } //Else Ignore it completly and let the player phase through!
+            TelemetryLogger.Log(this, "Died at this time", Time.deltaTime);
+            SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
         }
     } 
 }

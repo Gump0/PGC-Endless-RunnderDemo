@@ -5,9 +5,13 @@ using UnityEngine;
 public class ImmunityCheck : MonoBehaviour
 {
     public bool playerIsImmune;
+
     void Update(){
-        if(playerIsImmune){
-            Debug.Log(playerIsImmune);
+        if(playerIsImmune == true){
+            RainbowSheenOnImmunity(); 
         }
+    }
+    void RainbowSheenOnImmunity(){
+        
     }
 }

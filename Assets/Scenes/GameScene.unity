@@ -344,6 +344,7 @@ MonoBehaviour:
   - {fileID: 6972116964893947060, guid: d79340ec1d39cd78f8592f60ba98ad33, type: 3}
   - {fileID: 5658038561394465733, guid: 6624e07ac966938d6880698416157aa2, type: 3}
   - {fileID: 8709793816039215840, guid: 803488bee2085c62eb3b964c231f6598, type: 3}
+  - {fileID: 7683932834473605434, guid: f051869434459472faf58cded4865c5f, type: 3}
   lastTimeChecked: 0
   minimumSpawnTime: 5
   spawnPercentChance: 20
