@@ -21,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
     //Used for Telemetry Tracking related to APM tracking
     private float startTime, endtime = 5f;
     private int actionCount;
+    
     void Start(){
         startTime = Time.time;
     }

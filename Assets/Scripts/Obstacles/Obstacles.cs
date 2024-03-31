@@ -7,7 +7,9 @@ using UnityEngine.SceneManagement;
 public class Obstacles : MonoBehaviour
 {
     public ObstacleSpawner obstaclespawner; // Instance of ObstacleSpawner
-
+    
+    [SerializeField] private ImmunityCheck immunityCheck; // Lazy Immunity Patch :P
+    
     public int destroyedObjCount;
 
     public bool isFirstObj;
@@ -16,6 +18,10 @@ public class Obstacles : MonoBehaviour
     public void SetObstacleSpawner(ObstacleSpawner spawner)
     {
         obstaclespawner = spawner;
+    }
+
+    void Start(){
+        immunityCheck = GameObject.Find("Player").GetComponent<ImmunityCheck>();
     }
 
     public void Update()
@@ -72,8 +78,10 @@ public class Obstacles : MonoBehaviour
         }
         if(other.CompareTag("Player"))
         {
-            TelemetryLogger.Log(this, "Died at this time", Time.deltaTime);
-            SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
+            if(!immunityCheck.playerIsImmune){
+                TelemetryLogger.Log(this, "Died at this time", Time.deltaTime);
+                SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
+            } //Else Ignore it completly and let the player phase through!
         }
     } 
 }
