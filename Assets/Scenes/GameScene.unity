@@ -1782,6 +1782,10 @@ MonoBehaviour:
   - {fileID: 5921343542423084874, guid: e835ae46237f42587a427cef781a1ea0, type: 3}
   - {fileID: 3318112276431713087, guid: 705d2fe7bc16da533a668eafa13787ad, type: 3}
   - {fileID: 2103978422235187449, guid: fa9b94a70fe16fc69a0e937cde001aaf, type: 3}
+  - {fileID: 2103978422235187449, guid: 68e091e0a25617f4cad4218e7fe5e141, type: 3}
+  - {fileID: 2103978422235187449, guid: 8240b0d27f211f745a5adcf11d8fce61, type: 3}
+  - {fileID: 2103978422235187449, guid: 9f2b25c67ed1e8a4eb84f21daca85ac2, type: 3}
+  - {fileID: 2103978422235187449, guid: 5e59f462ac440134b806ee79b43de7a5, type: 3}
   rand: 0
   obstacleSpeed: 4
   speedIncreaseInterval: 10
