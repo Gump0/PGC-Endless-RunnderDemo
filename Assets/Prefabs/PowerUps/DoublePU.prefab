@@ -148,7 +148,9 @@ MonoBehaviour:
   scoreCount: {fileID: 0}
   powerUpVerticalSpeed: 2
   horizontalMoveRatio: 0.6
+  PowerUpSound: {fileID: 8300000, guid: edd57b94245f02443b4fe4151b21b1c0, type: 3}
   isMovingUp: 0
+  audio: {fileID: 0}
 --- !u!114 &3641204142586839820
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,6 +167,9 @@ MonoBehaviour:
   scoreCount: {fileID: 0}
   powerUpVerticalSpeed: 2.5
   horizontalMoveRatio: 0.6
+  PowerUpSound: {fileID: 8300000, guid: edd57b94245f02443b4fe4151b21b1c0, type: 3}
   isMovingUp: 0
+  audio: {fileID: 0}
+  doubleImageComponent: {fileID: 0}
   pointIncreaseDuration: 0
   elaspedDoubleTime: 0

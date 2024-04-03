@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,12 +8,20 @@ public class PowerUpMono : MonoBehaviour
     public ObstacleSpawner obstaclespawner; // Instance of Obstacle Spawner Monobehavior to reference obstacle stats
     [SerializeField] public ScoreCount scoreCount; // Instance of scorecount
     [SerializeField] protected float powerUpVerticalSpeed, horizontalMoveRatio;
+
+    public AudioClip PowerUpSound;
         
     public bool isMovingUp;
+    public AudioSource audio;
 
     void Awake()
     {
         SetRandomBool();
+    }
+    private void Start()
+    {
+        audio = GetComponent<AudioSource>();
+        audio.clip = PowerUpSound;
     }
 
     void Update()
@@ -58,7 +67,9 @@ public class PowerUpMono : MonoBehaviour
         }
         if(other.CompareTag("Player")){
             PowerUpSpecial();
-            TelemetryLogger.Log(this, "PowerUp Consumption", Time.deltaTime);
+            TelemetryLogger.Log(this, "PowerUp Consumption", Time.time);
+
+            audio.Play(0);
         }
         //On trigger logic shared between all powerups (if thats the case lol)
     }
@@ -69,7 +80,7 @@ public class PowerUpMono : MonoBehaviour
 
     private void SetRandomBool()
     {
-        int randomValue = Random.Range(0,2);
+        int randomValue = Random.Range(0, 2);
         isMovingUp = randomValue == 1;
     }
 }

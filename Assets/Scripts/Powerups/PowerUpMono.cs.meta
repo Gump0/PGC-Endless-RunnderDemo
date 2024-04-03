@@ -3,7 +3,11 @@ guid: f93b764fb04da36099c47e1baa986376
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - obstaclespawner: {instanceID: 0}
+  - scoreCount: {instanceID: 0}
+  - PowerUpSound: {fileID: 8300000, guid: edd57b94245f02443b4fe4151b21b1c0, type: 3}
+  - audio: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
