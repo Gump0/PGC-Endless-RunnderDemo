@@ -15,6 +15,9 @@ public class Obstacles : MonoBehaviour
 
     public bool isFirstObj;
 
+    public AudioClip crashSound;
+    public AudioSource audioForCrash;
+
     // Set the ObstacleSpawner instance
     public void SetObstacleSpawner(ObstacleSpawner spawner)
     {
@@ -28,6 +31,9 @@ public class Obstacles : MonoBehaviour
         if(playerObjReference == null){
             playerObjReference = GameObject.Find("Player");
         }
+
+        audioForCrash = GetComponent<AudioSource>();
+        audioForCrash.clip = crashSound;
     }
 
     public void Update()
@@ -84,6 +90,7 @@ public class Obstacles : MonoBehaviour
         }
         if(other.gameObject == playerObjReference && !immunityCheck.playerIsImmune)
         {
+            audioForCrash.Play();
             TelemetryLogger.Log(this, "Died at this time", Time.deltaTime);
             SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
         }
