@@ -168,7 +168,7 @@ MonoBehaviour:
   scoreCount: {fileID: 0}
   powerUpVerticalSpeed: 2.5
   horizontalMoveRatio: 0.6
-  PowerUpSound: {fileID: 8300000, guid: edd57b94245f02443b4fe4151b21b1c0, type: 3}
+  PowerUpSound: {fileID: 8300000, guid: 88ca1994cee86484eac45007ae99e2a2, type: 3}
   isMovingUp: 0
   audio: {fileID: 3406587176410134786}
   doubleImageComponent: {fileID: 0}
