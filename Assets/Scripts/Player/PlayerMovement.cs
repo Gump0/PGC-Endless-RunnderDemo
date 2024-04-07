@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     wheelRotationSpeed = 1.35f, rotationAngle; // REQUIRED values needed for rotation logic
     float elapsedBrakeTime;
     [SerializeField] private float rotationIncreaseVariable;
+    public bool isBraking;
     
     // Stuff needed for input timing
     [SerializeField]
@@ -90,12 +91,14 @@ public class PlayerMovement : MonoBehaviour
            elapsedBrakeTime += Time.deltaTime;
            float t = Mathf.Clamp01(elapsedBrakeTime/timeToBrake);
            updatedPlayerPosition.x = Mathf.Lerp(-defaultConstrainValue, -maxBrakeDistance, t);
+           isBraking = true;
         }
         else
         {
             elapsedBrakeTime = 0f;
             float t = Mathf.Clamp01(Time.deltaTime/timeToReturn);
             updatedPlayerPosition.x = Mathf.MoveTowards(updatedPlayerPosition.x, -defaultConstrainValue, timeToReturn * Time.deltaTime);
+            isBraking = false;
         }
         // Ensure the player does not exceed the defaultConstrainValue
         updatedPlayerPosition.x = Mathf.Clamp(updatedPlayerPosition.x, -maxBrakeDistance, -defaultConstrainValue);

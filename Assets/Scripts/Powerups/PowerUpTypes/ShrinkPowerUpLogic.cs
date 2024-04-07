@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class ShrinkPowerUpLogic : PowerUpMono // inheriting from 'PowerUpMono'
 {
-    private Vector3 defaultPlayerScale = new Vector3(1f,1f,1f); // Defualt scale value
-    private Vector3 shrunkenPlayerScale = new Vector3(0.5f,0.5f,0.5f); // Shrunken scale value
+    private Vector3 defaultPlayerScale = new Vector3(0.25f,0.25f,0.25f); // Defualt scale value
+    private Vector3 shrunkenPlayerScale = new Vector3(0.125f,0.125f,0.125f); // Shrunken scale value
     
     [SerializeField] private float elapsedTime, timeToShrink, maxShrinkTime, t; // Time related float values
     [SerializeField] private GameObject playerObj; // ref to player object
